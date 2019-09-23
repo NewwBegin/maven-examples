@@ -5,19 +5,19 @@ node {
      
     }
    stage('Build') {
-    withMaven(jdk: 'JDK-11', maven: 'Maven-3.6.0') {
+    withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
       sh 'mvn clean compile'
       }
     }
    stage('Unit Test run') {
-    withMaven(jdk: 'JDK-11', maven: 'Maven-3.6.0') {
+    withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
      sh 'mvn test'
       } 
     }
    stage('Sonarqube analysis'){
       def scannerHome = tool 'javascanner';
    withSonarQubeEnv(credentialsId: 'ItrainSonar') {
-    withMaven(jdk: 'JDK-11', maven: 'Maven-3.6.0') {
+    withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
     sh 'mvn sonar:sonar' 
       }
      }
@@ -31,7 +31,7 @@ node {
           }
     }
    stage('Package to Jfrog') {
-    withMaven(jdk: 'JDK-11', maven: 'Maven-3.6.0') {
+    withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
      sh 'mvn package'
       }
     }
