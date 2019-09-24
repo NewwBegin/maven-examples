@@ -14,44 +14,44 @@ node {
      sh 'mvn test'
       } 
     }
-   stage('Sonarqube analysis'){
-      def scannerHome = tool 'javascanner';
-   withSonarQubeEnv(credentialsId: 'ItrainSonar') {
-    withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
-    sh 'mvn sonar:sonar' 
+   //stage('Sonarqube analysis'){
+      //def scannerHome = tool 'javascanner';
+   //withSonarQubeEnv(credentialsId: 'ItrainSonar') {
+   // withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
+    //sh 'mvn sonar:sonar' 
       }
      }
     }
-  stage("Quality Gate"){
-          timeout(time: 1, unit: 'HOURS') {
-              def qg = waitForQualityGate()
-              if (qg.status != 'OK') {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+  //stage("Quality Gate"){
+          //timeout(time: 1, unit: 'HOURS') {
+              //def qg = waitForQualityGate()
+              //if (qg.status != 'OK') {
+                  //error "Pipeline aborted due to quality gate failure: ${qg.status}"
               }
           }
     }
-   stage('Package to Jfrog') {
-    withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
-     sh 'mvn package'
+   //stage('Package to Jfrog') {
+    //withMaven(jdk: 'jdk-11', maven: 'Maven-3.6.0') {
+     //sh 'mvn package'
       }
     }
    
-   stage('Deploy to Dev') {
+   //stage('Deploy to Dev') {
      
     }
-   stage('Automation Testing') {
+   //stage('Automation Testing') {
      
     }
-   stage('Deploy to Test') {
+   //stage('Deploy to Test') {
      
     }
-   stage('Smoke Testing') {
+   //stage('Smoke Testing') {
      
     }
-   stage('Deploy to Prod') {
+   //stage('Deploy to Prod') {
      
     }
-   stage('Acceptance Testing') {
+   //stage('Acceptance Testing') {
      
     }
 }
